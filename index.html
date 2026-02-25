@@ -1,0 +1,673 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IdeaBrowser.ai - For Sale!</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Fredoka+One&family=Bubblegum+Sans&family=Comic+Neue:wght@700&display=swap');
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            background: linear-gradient(180deg, #1a0533 0%, #2d1b69 30%, #4a2c8a 60%, #6b3fa0 80%, #f7a8b8 95%, #ffd4a0 100%);
+            min-height: 100vh;
+            overflow-x: hidden;
+            font-family: 'Bubblegum Sans', cursive;
+            color: white;
+            position: relative;
+        }
+
+        /* Stars */
+        .stars-container {
+            position: fixed;
+            top: 0; left: 0;
+            width: 100%; height: 60%;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .star {
+            position: absolute;
+            background: white;
+            border-radius: 50%;
+            animation: twinkle 2s ease-in-out infinite alternate;
+        }
+
+        @keyframes twinkle {
+            0% { opacity: 0.2; transform: scale(0.8); }
+            100% { opacity: 1; transform: scale(1.2); }
+        }
+
+        /* Main container */
+        .container {
+            position: relative;
+            z-index: 1;
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+            text-align: center;
+        }
+
+        /* For Sale Sign */
+        .sale-sign-wrapper {
+            margin-top: 30px;
+            animation: swingSign 3s ease-in-out infinite;
+            transform-origin: top center;
+        }
+
+        .sale-sign-rope {
+            width: 4px;
+            height: 30px;
+            background: #8B4513;
+            margin: 0 auto;
+        }
+
+        .sale-sign {
+            background: #ff4757;
+            border: 6px solid #fff;
+            border-radius: 20px;
+            padding: 20px 50px;
+            display: inline-block;
+            box-shadow: 0 8px 30px rgba(255, 71, 87, 0.5), inset 0 2px 4px rgba(255,255,255,0.3);
+            position: relative;
+        }
+
+        .sale-sign::before, .sale-sign::after {
+            content: '';
+            position: absolute;
+            top: -20px;
+            width: 12px;
+            height: 12px;
+            background: #c0c0c0;
+            border-radius: 50%;
+            border: 2px solid #888;
+        }
+
+        .sale-sign::before { left: 30px; }
+        .sale-sign::after { right: 30px; }
+
+        .sale-sign h1 {
+            font-family: 'Fredoka One', cursive;
+            font-size: 3rem;
+            color: white;
+            text-shadow: 3px 3px 0px rgba(0,0,0,0.2);
+            letter-spacing: 3px;
+        }
+
+        .sale-sign .domain {
+            font-family: 'Comic Neue', cursive;
+            font-size: 1.3rem;
+            color: #ffe066;
+            margin-top: 5px;
+        }
+
+        @keyframes swingSign {
+            0%, 100% { transform: rotate(-3deg); }
+            50% { transform: rotate(3deg); }
+        }
+
+        /* Price tag */
+        .price-section {
+            margin: 40px auto;
+            animation: bounceIn 1s ease-out 0.5s both;
+        }
+
+        .price-tag {
+            display: inline-block;
+            background: linear-gradient(135deg, #ffd32a, #ffaf00);
+            color: #333;
+            font-family: 'Fredoka One', cursive;
+            font-size: 3.5rem;
+            padding: 20px 50px;
+            border-radius: 30px;
+            position: relative;
+            box-shadow: 0 8px 25px rgba(255, 175, 0, 0.4);
+            animation: pulse 2s ease-in-out infinite;
+        }
+
+        .price-tag::before {
+            content: '';
+            position: absolute;
+            top: -8px;
+            right: -8px;
+            width: 30px;
+            height: 30px;
+            background: #ff4757;
+            border-radius: 50%;
+            border: 3px solid white;
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+
+        @keyframes bounceIn {
+            0% { opacity: 0; transform: scale(0.3) translateY(-50px); }
+            60% { transform: scale(1.1) translateY(0); }
+            100% { opacity: 1; transform: scale(1) translateY(0); }
+        }
+
+        /* Message to Greg */
+        .message {
+            margin: 30px auto;
+            max-width: 650px;
+            animation: fadeInUp 1s ease-out 1s both;
+        }
+
+        .message .greg-name {
+            font-family: 'Fredoka One', cursive;
+            font-size: 2.2rem;
+            color: #ffe066;
+            text-shadow: 2px 2px 0px rgba(0,0,0,0.3);
+            margin-bottom: 10px;
+        }
+
+        .message p {
+            font-size: 1.4rem;
+            line-height: 1.6;
+            color: #e8d5f5;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.3);
+        }
+
+        .message .highlight {
+            color: #ffe066;
+            font-family: 'Fredoka One', cursive;
+        }
+
+        .message .disneyland {
+            color: #ff6b9d;
+            font-family: 'Fredoka One', cursive;
+            font-size: 1.6rem;
+        }
+
+        @keyframes fadeInUp {
+            0% { opacity: 0; transform: translateY(30px); }
+            100% { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Globe / Map Section */
+        .globe-section {
+            margin: 40px auto;
+            position: relative;
+            height: 400px;
+            max-width: 800px;
+            animation: fadeInUp 1s ease-out 1.5s both;
+        }
+
+        .globe {
+            width: 350px;
+            height: 350px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #4ecdc4, #44b09e, #3d9b8f);
+            margin: 0 auto;
+            position: relative;
+            box-shadow: 0 0 60px rgba(78, 205, 196, 0.3), inset -30px -30px 60px rgba(0,0,0,0.2);
+            overflow: hidden;
+        }
+
+        /* Continents on globe */
+        .continent {
+            position: absolute;
+            background: #8BC34A;
+            border-radius: 40%;
+            opacity: 0.7;
+        }
+
+        .australia {
+            bottom: 75px; right: 55px;
+            width: 90px; height: 80px;
+            background: none;
+            border-radius: 0;
+        }
+
+        .japan {
+            width: 20px; height: 45px;
+            top: 80px; right: 85px;
+            border-radius: 40%;
+            background: #7CB342;
+            transform: rotate(-15deg);
+        }
+
+        .asia {
+            width: 120px; height: 90px;
+            top: 60px; right: 100px;
+            border-radius: 30% 60% 40% 50%;
+            background: #689F38;
+        }
+
+        .pacific-islands {
+            width: 8px; height: 8px;
+            bottom: 120px; right: 140px;
+            border-radius: 50%;
+            background: #7CB342;
+        }
+
+        /* City markers */
+        .city-marker {
+            position: absolute;
+            z-index: 5;
+        }
+
+        .city-dot {
+            width: 14px;
+            height: 14px;
+            background: #ff4757;
+            border-radius: 50%;
+            border: 3px solid white;
+            box-shadow: 0 0 10px rgba(255, 71, 87, 0.6);
+            animation: markerPulse 1.5s ease-in-out infinite;
+        }
+
+        .city-label {
+            font-family: 'Fredoka One', cursive;
+            font-size: 0.85rem;
+            color: white;
+            text-shadow: 1px 1px 3px rgba(0,0,0,0.8);
+            white-space: nowrap;
+            margin-top: 4px;
+        }
+
+        .sydney-marker {
+            bottom: 85px;
+            right: 75px;
+        }
+
+        .tokyo-marker {
+            top: 90px;
+            right: 80px;
+        }
+
+        @keyframes markerPulse {
+            0%, 100% { box-shadow: 0 0 10px rgba(255, 71, 87, 0.6); }
+            50% { box-shadow: 0 0 25px rgba(255, 71, 87, 0.9); }
+        }
+
+        /* Flight path */
+        .flight-path {
+            position: absolute;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            pointer-events: none;
+            z-index: 3;
+        }
+
+        .flight-path svg {
+            width: 100%;
+            height: 100%;
+        }
+
+        .dashed-path {
+            stroke-dasharray: 8, 6;
+            stroke-dashoffset: 0;
+            animation: dashMove 2s linear infinite;
+        }
+
+        @keyframes dashMove {
+            to { stroke-dashoffset: -28; }
+        }
+
+        /* Airplane */
+        .airplane {
+            position: absolute;
+            font-size: 2.2rem;
+            z-index: 10;
+            filter: drop-shadow(2px 2px 4px rgba(0,0,0,0.4));
+            animation: flyPlane 6s ease-in-out infinite;
+            offset-rotate: auto;
+        }
+
+        @keyframes flyPlane {
+            0% {
+                bottom: 100px;
+                right: 85px;
+                transform: rotate(-45deg) scale(1);
+            }
+            25% {
+                bottom: 160px;
+                right: 120px;
+                transform: rotate(-50deg) scale(1.1);
+            }
+            50% {
+                bottom: 210px;
+                right: 140px;
+                transform: rotate(-40deg) scale(1.2);
+            }
+            75% {
+                bottom: 250px;
+                right: 110px;
+                transform: rotate(-30deg) scale(1.1);
+            }
+            100% {
+                bottom: 100px;
+                right: 85px;
+                transform: rotate(-45deg) scale(1);
+            }
+        }
+
+        /* Contrail */
+        .contrail {
+            position: absolute;
+            width: 4px;
+            height: 4px;
+            background: rgba(255,255,255,0.6);
+            border-radius: 50%;
+            z-index: 9;
+        }
+
+        /* Castle (Disneyland) */
+        .castle-section {
+            margin: 20px auto;
+            animation: fadeInUp 1s ease-out 2s both;
+        }
+
+        .castle {
+            font-size: 5rem;
+            animation: castleBounce 2s ease-in-out infinite;
+            display: inline-block;
+        }
+
+        @keyframes castleBounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+
+        .castle-text {
+            font-family: 'Fredoka One', cursive;
+            font-size: 1.2rem;
+            color: #ff6b9d;
+            margin-top: 5px;
+        }
+
+        /* Sparkles */
+        .sparkle {
+            position: fixed;
+            pointer-events: none;
+            z-index: 100;
+            animation: sparkleFloat 3s ease-in-out infinite;
+        }
+
+        @keyframes sparkleFloat {
+            0%, 100% { opacity: 0; transform: translateY(0) scale(0); }
+            50% { opacity: 1; transform: translateY(-20px) scale(1); }
+        }
+
+        /* CTA */
+        .cta-section {
+            margin: 40px auto;
+            animation: fadeInUp 1s ease-out 2.5s both;
+        }
+
+        .cta-button {
+            display: inline-block;
+            background: linear-gradient(135deg, #ff6b9d, #ff4757);
+            color: white;
+            font-family: 'Fredoka One', cursive;
+            font-size: 1.4rem;
+            padding: 18px 45px;
+            border-radius: 50px;
+            text-decoration: none;
+            box-shadow: 0 8px 25px rgba(255, 71, 87, 0.4);
+            transition: all 0.3s ease;
+            border: 3px solid rgba(255,255,255,0.3);
+            cursor: pointer;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-3px) scale(1.05);
+            box-shadow: 0 12px 35px rgba(255, 71, 87, 0.6);
+        }
+
+        .cta-sub {
+            font-size: 1rem;
+            color: #c9a0dc;
+            margin-top: 15px;
+        }
+
+        /* Floating emojis */
+        .float-emoji {
+            position: fixed;
+            font-size: 2rem;
+            pointer-events: none;
+            z-index: 0;
+            animation: floatUp linear infinite;
+            opacity: 0.5;
+        }
+
+        @keyframes floatUp {
+            0% { transform: translateY(100vh) rotate(0deg); opacity: 0; }
+            10% { opacity: 0.5; }
+            90% { opacity: 0.5; }
+            100% { transform: translateY(-100px) rotate(360deg); opacity: 0; }
+        }
+
+        /* Clouds */
+        .cloud {
+            position: fixed;
+            background: rgba(255,255,255,0.08);
+            border-radius: 50px;
+            z-index: 0;
+        }
+
+        .cloud::before, .cloud::after {
+            content: '';
+            position: absolute;
+            background: inherit;
+            border-radius: 50%;
+        }
+
+        /* Footer */
+        .footer {
+            margin-top: 50px;
+            padding: 20px;
+            font-size: 0.9rem;
+            color: rgba(255,255,255,0.4);
+            animation: fadeInUp 1s ease-out 3s both;
+        }
+
+        /* Responsive */
+        @media (max-width: 600px) {
+            .sale-sign h1 { font-size: 2rem; }
+            .sale-sign { padding: 15px 30px; }
+            .price-tag { font-size: 2.5rem; padding: 15px 35px; }
+            .globe { width: 260px; height: 260px; }
+            .message .greg-name { font-size: 1.6rem; }
+            .message p { font-size: 1.1rem; }
+        }
+
+        /* Plane SVG animation along path */
+        .plane-on-path {
+            position: absolute;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            z-index: 10;
+            pointer-events: none;
+        }
+
+        /* Rainbow trail */
+        .rainbow-trail {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0; left: 0;
+            z-index: 2;
+            pointer-events: none;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Stars -->
+    <div class="stars-container" id="stars"></div>
+
+    <!-- Floating emojis -->
+    <div id="floatingEmojis"></div>
+
+    <!-- Main Content -->
+    <div class="container">
+
+        <!-- For Sale Sign -->
+        <div class="sale-sign-wrapper">
+            <div class="sale-sign-rope"></div>
+            <div class="sale-sign">
+                <h1>FOR SALE</h1>
+                <div class="domain">IdeaBrowser.ai</div>
+            </div>
+        </div>
+
+        <!-- Price Tag -->
+        <div class="price-section">
+            <div class="price-tag">$15,000 USD</div>
+        </div>
+
+        <!-- Message to Greg -->
+        <div class="message">
+            <div class="greg-name">Hey Greg Isenberg! 👋</div>
+            <p>
+                This premium domain is waiting for you.<br>
+                <span class="highlight">IdeaBrowser.ai</span> &mdash; perfect for your next big thing.<br><br>
+                Honestly? I just wanna take my kids to<br>
+                <span class="disneyland">Tokyo Disneyland! 🏰✨</span><br><br>
+                So here's the deal: <span class="highlight">$15K</span> and it's all yours.<br>
+                Help a parent out, Greg. 😄
+            </p>
+        </div>
+
+        <!-- Globe with flight path -->
+        <div class="globe-section">
+            <div class="globe">
+                <!-- Continents -->
+                <div class="continent asia"></div>
+                <div class="continent japan"></div>
+                <div class="continent australia">
+                    <svg viewBox="0 0 200 180" fill="#7CB342" opacity="0.85" style="width:100%;height:100%">
+                        <!-- Main landmass -->
+                        <path d="M60,20 L80,15 L100,18 L120,10 L140,15 L155,25 L165,40 L170,60 L175,80 L170,100 L175,120 L168,140 L150,155 L130,160 L110,155 L90,160 L70,150 L55,135 L40,120 L30,100 L25,80 L30,60 L35,40 L45,28 Z"/>
+                        <!-- Top-right bump (Cape York) -->
+                        <path d="M140,15 L150,5 L155,8 L155,25 L140,15 Z"/>
+                        <!-- Tasmania -->
+                        <ellipse cx="140" cy="170" rx="12" ry="8"/>
+                    </svg>
+                </div>
+                <div class="continent pacific-islands"></div>
+
+                <!-- City markers -->
+                <div class="city-marker sydney-marker">
+                    <div class="city-dot"></div>
+                    <div class="city-label">Sydney 🦘</div>
+                </div>
+                <div class="city-marker tokyo-marker">
+                    <div class="city-dot"></div>
+                    <div class="city-label">Tokyo 🗼</div>
+                </div>
+
+                <!-- Flight path SVG -->
+                <div class="flight-path">
+                    <svg viewBox="0 0 350 350" fill="none">
+                        <path d="M265 260 Q200 150 265 100"
+                              stroke="rgba(255,255,255,0.5)"
+                              stroke-width="3"
+                              fill="none"
+                              class="dashed-path"
+                              stroke-linecap="round"/>
+                        <!-- Rainbow trail -->
+                        <path d="M265 260 Q200 150 265 100"
+                              stroke="url(#rainbow)"
+                              stroke-width="2"
+                              fill="none"
+                              opacity="0.4"
+                              stroke-linecap="round"/>
+                        <defs>
+                            <linearGradient id="rainbow" x1="0%" y1="0%" x2="100%" y2="100%">
+                                <stop offset="0%" style="stop-color:#ff6b6b"/>
+                                <stop offset="25%" style="stop-color:#ffd93d"/>
+                                <stop offset="50%" style="stop-color:#6bcb77"/>
+                                <stop offset="75%" style="stop-color:#4d96ff"/>
+                                <stop offset="100%" style="stop-color:#9b59b6"/>
+                            </linearGradient>
+                        </defs>
+                    </svg>
+                </div>
+
+                <!-- Animated airplane -->
+                <div class="airplane" id="airplane">✈️</div>
+            </div>
+        </div>
+
+        <!-- Castle -->
+        <div class="castle-section">
+            <div class="castle">🏰</div>
+            <div class="castle-text">Destination: Tokyo Disneyland!</div>
+        </div>
+
+        <!-- CTA -->
+        <div class="cta-section">
+            <a href="https://x.com/gregisenberg" target="_blank" class="cta-button">
+                DM Greg on X →
+            </a>
+            <div class="cta-sub">or email: hello@ideabrowser.ai</div>
+        </div>
+
+        <div class="footer">
+            Made with a dream and a whole lot of pixie dust ✨
+        </div>
+    </div>
+
+    <script>
+        // Create stars
+        const starsContainer = document.getElementById('stars');
+        for (let i = 0; i < 80; i++) {
+            const star = document.createElement('div');
+            star.className = 'star';
+            const size = Math.random() * 3 + 1;
+            star.style.width = size + 'px';
+            star.style.height = size + 'px';
+            star.style.left = Math.random() * 100 + '%';
+            star.style.top = Math.random() * 100 + '%';
+            star.style.animationDelay = Math.random() * 3 + 's';
+            star.style.animationDuration = (Math.random() * 2 + 1) + 's';
+            starsContainer.appendChild(star);
+        }
+
+        // Floating emojis
+        const emojis = ['✨', '⭐', '🌟', '💫', '🎢', '🎠', '🎡', '🎪', '🏰', '✈️', '🌸'];
+        const emojiContainer = document.getElementById('floatingEmojis');
+
+        function createFloatingEmoji() {
+            const emoji = document.createElement('div');
+            emoji.className = 'float-emoji';
+            emoji.textContent = emojis[Math.floor(Math.random() * emojis.length)];
+            emoji.style.left = Math.random() * 100 + '%';
+            emoji.style.animationDuration = (Math.random() * 8 + 8) + 's';
+            emoji.style.fontSize = (Math.random() * 1.5 + 1) + 'rem';
+            emojiContainer.appendChild(emoji);
+
+            setTimeout(() => emoji.remove(), 16000);
+        }
+
+        // Create initial emojis
+        for (let i = 0; i < 6; i++) {
+            setTimeout(createFloatingEmoji, i * 1500);
+        }
+
+        // Continue creating emojis
+        setInterval(createFloatingEmoji, 2500);
+
+        // Mouse sparkle trail
+        document.addEventListener('mousemove', (e) => {
+            if (Math.random() > 0.85) {
+                const sparkle = document.createElement('div');
+                sparkle.className = 'sparkle';
+                sparkle.textContent = '✨';
+                sparkle.style.left = e.clientX + 'px';
+                sparkle.style.top = e.clientY + 'px';
+                sparkle.style.fontSize = (Math.random() * 15 + 10) + 'px';
+                document.body.appendChild(sparkle);
+                setTimeout(() => sparkle.remove(), 3000);
+            }
+        });
+    </script>
+
+</body>
+</html>
